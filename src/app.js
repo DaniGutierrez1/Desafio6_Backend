@@ -10,11 +10,17 @@ import { __dirname } from "./utils.js";
 import path from "path";
 import { Server} from "socket.io"
 
+import {initializePassport} from "./config/passportConfig.js"
+import passport from "passport"
+
+
 import { viewsRouter } from "./routes/views.routes.js";
 
 import { sessionsRouter } from "./routes/sessions.routes.js";
 import { productsRouter } from "./routes/products.routes.js";
 // import { cartsRouter } from "./routes/cart.routes.js";
+
+
 
 const port = config.server.port;
 const app = express()
@@ -32,7 +38,9 @@ app.use(session({
 
 const httpServer=app.listen(port,()=> console.log(`server escuchando en puerto ${port}`));
 
-
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use(express.static(path.join(__dirname,"/public")))

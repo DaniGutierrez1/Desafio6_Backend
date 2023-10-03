@@ -1,13 +1,13 @@
 export const checkUserAuthenticated = (req,res,next)=>{
-    if(req.session?.userInfo){
+    if(req.user){
         next();
     }else{
         res.redirect("/login");
     }
 };
 
-export const showProductsView = (req,res,next)=>{
-    if(req.session?.userInfo){
+export const showLoginView = (req,res,next)=>{
+    if(req.user){
         res.redirect("/products");
     }else{
         next();

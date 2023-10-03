@@ -31,12 +31,16 @@ router.get("/login",showLoginView,(req,res)=>{
     res.render("login");
 })
 
+router.get("/cambio-contraseña",(req,res)=>{
+    res.render("changePassword")
+})
+
 router.get("/perfil",checkUserAuthenticated,(req,res)=>{
     /*
     const user = await userService.getByEmail(user.email,{lean:true})
     */
-    res.render("profile",{user:req.session.userInfo})
-})
+    res.render("profile",{user:JSON.parse(JSON.stringify(req.user))});
+});
 
 router.get("/products",async (req,res)=>{
     try {
