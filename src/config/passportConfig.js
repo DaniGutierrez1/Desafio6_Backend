@@ -55,7 +55,7 @@ export const initializePassport = ()=>{
 
     passport.use("githubLoginStrategy", new githubStrategy(
         {
-            clientID:config.github.clienteId,
+            clientID:config.github.clientId,
             clientSecret:config.github.clientSecret,
             callbackUrl:config.github.callbackUrl,
         },
